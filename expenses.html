@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <link rel="stylesheet" href="css/project.css">
+    <script src="https://kit.fontawesome.com/4a47a736bd.js" crossorigin="anonymous"></script>
+    <title>Expenses</title>
+</head>
+
+<body onload="display('expense')">
+    <main>
+        <div class="nav-bar">
+            <a href="index.html"><i class="fa-solid fa-house fa-2x"></i></a>
+            <i class="fa-solid fa-circle-plus fa-2x" onclick="show()"></i>
+        </div>
+        <div class="container-income-expense">
+            <div>Expenses</div>
+            <div id="totalExpenses">Total amount</div>
+            <div id="list"></div>
+        </div>
+        <div id="popup">
+            <form id="form">
+                <button type="button" id="close" onclick="hide()">X</button>
+                <h1>Add Expense</h1>
+                <label for="category"><b>Category</b></label>
+                <br>
+                <select id="category" name="category">
+                    <option value="Fun">Fun</option>
+                    <option value="School">School</option>
+                    <option value="Food">Food</option>
+                    <option value="Technology">Technology</option>
+                    <option value="House">House</option>
+                </select>
+                <br>
+                <label for="amount"><b>Amount</b></label>
+                <input type="text" placeholder="Enter Amount" name="amount" id="amount" required>
+                <button type="submit" class="btn" id="addExpense" onclick="hide()">Add Expense</button>
+            </form>
+        </div>
+    </main>
+    <script src="js/expenses.js"></script>
+</body>
+
+</html>
