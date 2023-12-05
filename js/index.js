@@ -7,7 +7,7 @@
       localStorage.setItem("tasks", JSON.stringify(tasks));
   }
 
-  document.getElementById('totalAmount').innerText = "Total Amount: $" + tasks.reduce((acc, incomes) => incomes.type == "income" ? acc + incomes.amount : acc, 0) - tasks.reduce((acc, incomes) => incomes.type == "expense" ? acc + incomes.amount : acc, 0);
+  document.getElementById('totalAmount').innerText = "Total Amount: $" + (tasks.reduce((acc, incomes) => incomes.type == "income" ? acc + incomes.amount : acc, 0) - tasks.reduce((acc, incomes) => incomes.type == "expense" ? acc + incomes.amount : acc, 0));
 
   var display = () => {
       var li = document.createElement('li');
