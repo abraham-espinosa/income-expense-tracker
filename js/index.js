@@ -1,5 +1,5 @@
   /* add button */
-  localStorage.setItem("tasks", JSON.stringify(tasks));
+  /*localStorage.setItem("tasks", JSON.stringify(tasks));*/
 
   try {
       var tasks = JSON.parse(localStorage.getItem("tasks"));
