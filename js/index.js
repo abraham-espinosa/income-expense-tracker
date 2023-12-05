@@ -40,7 +40,7 @@
       var label = document.createElement('label');
       label.innerText = element.category;
       var amount = document.createElement('label');
-      amount.innerHTML = element.amount;
+      amount.innerHTML = "$"+element.amount;
       var mdate = document.createElement('label');
       mdate.innerHTML = element.date;
       var mtype = document.createElement('label');
