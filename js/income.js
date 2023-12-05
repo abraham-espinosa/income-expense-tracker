@@ -6,16 +6,15 @@ function hide() {
   document.getElementById("popup").style.display = "none";
 }
 
-// localStorage.setItem("tasks", JSON.stringify(tasks));
+// 
 try {
   var tasks = JSON.parse(localStorage.getItem("tasks"));
-
+  document.getElementById('totalIncome').innerText = "Total Income: $" + tasks.reduce((acc, incomes) => incomes.type == "income" ? acc + incomes.amount : acc, 0);
 } catch (err) {
   var tasks = [];
-
+  localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
-document.getElementById('totalIncome').innerText = "Total Income: $" + tasks.reduce((acc, incomes) => incomes.type == "income" ? acc + incomes.amount : acc, 0);
 /* add button */
 document.getElementById("addIncome").addEventListener("click", () => {
   if ((document.getElementById('category').value != "") && (document.getElementById('amount').value != "")) {
@@ -38,29 +37,6 @@ document.getElementById("addIncome").addEventListener("click", () => {
     alert("Insert a value");
   }
 });
-
-var display = type => {
-  var li = document.createElement('li');
-  var label1 = document.createElement('label');
-  label1.innerText = "Category";
-  var label2 = document.createElement('label');
-  label2.innerText = "Amount";
-  var label3 = document.createElement('label');
-  label3.innerText = "Date";
-  var label4 = document.createElement('label');
-  label4.innerText = "Delete";
-  li.appendChild(label1);
-  li.appendChild(label2);
-  li.appendChild(label3);
-  li.appendChild(label4);
-  document.querySelector('#list').appendChild(li);
-  JSON.parse(localStorage.getItem("tasks")).forEach(element => {
-
-    if (element.type == "income" && type == "income") {
-      createElementsList(element);
-    }
-  });
-}
 
 const createElementsList = element => {
   var li = document.createElement('li');
@@ -90,6 +66,29 @@ const createElementsList = element => {
   li.appendChild(cancelBtn);
 
   document.querySelector('#list').appendChild(li);
+}
+
+var display = type => {
+  var li = document.createElement('li');
+  var label1 = document.createElement('label');
+  label1.innerText = "Category";
+  var label2 = document.createElement('label');
+  label2.innerText = "Amount";
+  var label3 = document.createElement('label');
+  label3.innerText = "Date";
+  var label4 = document.createElement('label');
+  label4.innerText = "Delete";
+  li.appendChild(label1);
+  li.appendChild(label2);
+  li.appendChild(label3);
+  li.appendChild(label4);
+  document.querySelector('#list').appendChild(li);
+  JSON.parse(localStorage.getItem("tasks")).forEach(element => {
+
+    if (element.type == "income" && type == "income") {
+      createElementsList(element);
+    }
+  });
 }
 
 const reset = () => {

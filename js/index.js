@@ -3,12 +3,13 @@
 
   try {
       var tasks = JSON.parse(localStorage.getItem("tasks"));
+      document.getElementById('totalAmount').innerText = "Total Income: $" + (tasks.reduce((acc, incomes) => incomes.type == "income" ? acc + incomes.amount : acc, 0) - tasks.reduce((acc, incomes) => incomes.type == "expense" ? acc + incomes.amount : acc, 0));
+
   } catch (err) {
       var tasks = [];
       localStorage.setItem("tasks", JSON.stringify(tasks));
   }
 
-  document.getElementById('totalAmount').innerText = "Total Income: $" + (tasks.reduce((acc, incomes) => incomes.type == "income" ? acc + incomes.amount : acc, 0) - tasks.reduce((acc, incomes) => incomes.type == "expense" ? acc + incomes.amount : acc, 0));
 
   var display = () => {
       var li = document.createElement('li');
