@@ -25,13 +25,11 @@
                 </div>
             </div>
             <table id="list"></table>
-        </div>
+        </div>                    
         <div id="popup">
             <form id="form">
-                <button type="button" id="close" onclick="hide()">Close</button>
-                <h1>Add Expense</h1>
-                <label for="category"><b>Category</b></label>
-                <br>
+                <div class="button-close"><button type="button" id="close" onclick="hide()">Close</button></div>
+                <label for="category">Category</label>
                 <select id="category" name="category">
                     <option value="Fun">Fun</option>
                     <option value="School">School</option>
@@ -39,10 +37,9 @@
                     <option value="Technology">Technology</option>
                     <option value="House">House</option>
                 </select>
-                <br>
-                <label for="amount"><b>Amount</b></label>
-                <input type="text" placeholder="Enter Amount" name="amount" id="amount" required>
-                <button type="submit" class="btn" id="addExpense" onclick="hide()">Add Expense</button>
+                <label for="amount">Amount</label>
+                <input type="number" placeholder="Enter amount" name="amount" id="amount" required>
+                <div class="button-add"><button type="submit" class="btn" id="addExpense" onclick="hide()">Add Expense</button></div>
             </form>
         </div>
     </main>

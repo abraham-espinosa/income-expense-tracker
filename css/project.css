@@ -172,7 +172,7 @@ label{
 .button-add{
   margin: 3rem auto auto auto;
 }
-#close, #addIncome {
+#close, #addIncome, #addExpense {
   box-shadow: 0 3px #999;
   border: none;
   text-decoration: none;
@@ -189,7 +189,7 @@ label{
  #close{
   background-color: rgb(11, 51, 145);
  }
- #addIncome{
+ #addIncome, #addExpense{
   background-color: #3e8e41;
 
  }
