@@ -1,12 +1,13 @@
-body {
+* {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: .8rem;
 }
 main{
   max-width: 800px;
   margin: 0 auto;
   padding: 0;
 }
-.container-index-1>*,
+.nav-bar-index>*,
 .container-index-2>*,
 .container-income-expense > * {
     background-color: rgba(255, 255, 255, 0.8);
@@ -14,47 +15,50 @@ main{
     padding: 20px 0;
     font-size: 1.2rem;
     border-radius: 1.2rem;
-    background-color: #ffffff;
     color: #212121;
     text-decoration: none;
 }
 
-/*NAV BAR*/
-.nav-bar{
+/*NAV BAR INCOME & EXPENSES*/
+.nav-bar-general{
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   grid-template-rows: auto;
   text-align: center;
   padding: 20px 0;
-  font-size: 2.5rem;
+  font-size: 1.2rem;
   text-decoration: none;
+  background-color: #45494b;
+  margin-bottom: 1rem;
+  border-radius: 1.2rem;
+}
+.nav-bar-general > a {
+  padding: 0 auto;
 }
 .fa-home-alt:before, .fa-home-lg-alt:before, .fa-home:before, .fa-house:before {
-  color: rgb(16, 31, 60);
+  color: #ffffff;
 }
 .fa-circle-plus:before, .fa-plus-circle:before{
   color: #4CAF50;
 }
+.main-container{
+  display: grid;
+  grid-template-rows: auto;
+}
+
+.main-container > *{
+  margin: 0 auto;
+  padding: .8rem;
+}
 
 /*LISTS*/
-#list > *{
-  display: grid;
-  grid-template-columns: 30% 10%  20% auto;
-  grid-template-rows: auto;
-  gap: 20px;
-}
-#list-index > * {
-  display: grid;
-  grid-template-columns: 25% 25% 25% 25%;
-  gap: 4px;
-  text-align: left;
-}
+
 #list-index{
 padding: 1rem;
 }
 
 /*INDEX PAGE*/
-.container-index-1 {
+.nav-bar-index {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto;
@@ -73,7 +77,7 @@ padding: 1rem;
   gap: 20px;
   padding: 20px;
 }
-.container-index-1 > *:hover {
+.nav-bar-index > *:hover {
   background-color: rgb(190, 219, 247);
 }
 #myChart{
@@ -91,6 +95,9 @@ padding: 1rem;
   gap: 20px;
   padding: 20px;
 }
+.subtitle{
+  font-size: 1rem;
+}
 
 /* BUTTONS */
 .fa-circle-plus {
@@ -102,7 +109,7 @@ padding: 1rem;
 #list > * {
   margin: 1rem;
 }
-.deleteTask {
+.deleteTask, .new-record {
   display: inline-block;
   padding: 15px 25px;
   font-size: 1rem;
@@ -115,14 +122,20 @@ padding: 1rem;
   text-decoration: none;
   outline: none;
   color: #fff;
+  margin: 0rem;
+  padding: .5rem;
+  margin:.1rem;
 }
-.deleteTask:hover {
+.deleteTask:hover, .new-record:hover {
   background-color: #3e8e41
 }
-.deleteTask:active {
+.deleteTask:active, .new-record:active {
   background-color: #3e8e41;
   transform: translateY(4px);
   box-shadow: 0 5px #666;
+}
+.new-record{
+  font-weight: bold;
 }
 
 /* Form - Expenses & Income */
@@ -130,36 +143,56 @@ padding: 1rem;
   display: none;
   width: 100%;
   height: 100%;
+  position: fixed;
   top: 0;
   left: 0;
-  position: fixed;
-  background-color: rgba(50, 50, 50, 0.9);
+  background-color: rgba(30, 30, 30, 0.9);
 }
 #form {
-  position: absolute;
-  background-color: #6b7991;
-  border: 1px solid #212121;
-  border-radius: 10px;
-  padding: 30px;
-  margin-left: -150px;
-  width: 300px;
-  left: 50%;
-  top: 25%;
+  background-color: rgba(220, 220, 220, 0.81);
+  border-radius: 30px;
+  padding: 3rem;
+  margin:5rem auto auto auto;
+  width: 280px;
 }
-input {
+
+input, select {
   width: 100%;
-  margin-bottom: 20px;
+  font-size: 1.2rem;
+  padding-bottom: .1rem;
+  margin-bottom: 1rem;
 }
-#close {
+label{
+  font-size: 1.4rem;
+  margin: 1;
+}
+.button-close{
+  margin: auto auto 2rem auto;
+}
+.button-add{
+  margin: 3rem auto auto auto;
+}
+#close, #addIncome {
+  box-shadow: 0 3px #999;
+  border: none;
+  text-decoration: none;
+  outline: none;
+  font-size: 1rem;
+  border-radius: 15px; 
+  padding: .5rem;
+  color: #fff;
   position: absolute;
-  font-weight: bold;
-  margin-left: 139px;
-  margin-top: -19px;
-  width: 30px;
-  height: 27px;
-  background-color: #3f8441;
-  border-radius: 4px; 
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin:0;
 }
+ #close{
+  background-color: rgb(11, 51, 145);
+ }
+ #addIncome{
+  background-color: #3e8e41;
+
+ }
 .cont {
   background-color: #e3f2fd;
   border-radius: 2px;
@@ -168,4 +201,12 @@ input {
   margin: 10px auto 10px auto;
   text-align: left;
   overflow: auto;
+}
+
+@media only screen and (min-width: 37.5em) {
+/* Form - Expenses & Income */
+* {
+  font-size: 1rem;
+}
+
 }

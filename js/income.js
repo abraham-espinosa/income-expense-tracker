@@ -20,10 +20,12 @@ document.getElementById("addIncome").addEventListener("click", () => {
   if ((document.getElementById('category').value != "") && (document.getElementById('amount').value != "")) {
     reset();
     var currentDate = new Date();
-    currentDate = currentDate.toLocaleDateString();
+    let year = new Intl.DateTimeFormat('en', { year: '2-digit' }).format(currentDate);
+    let month = new Intl.DateTimeFormat('en', { month: 'short' }).format(currentDate);
+    let day = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(currentDate);
     tasks.push({
       id: Date.now(),
-      date: currentDate,
+      date: day+"-"+month+"-"+year,
       category: document.getElementById('category').value,
       amount: parseFloat(document.getElementById('amount').value),
       type: "income"
@@ -31,7 +33,7 @@ document.getElementById("addIncome").addEventListener("click", () => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
     document.getElementById('category').value = "";
     document.getElementById('amount').value = "";
-    display("income");
+    display();
     document.getElementById('totalIncome').innerText = "Total Income: $" + tasks.reduce((acc, incomes) => incomes.type == "income" ? acc + incomes.amount : acc, 0);
   } else {
     alert("Insert a value");
@@ -39,56 +41,63 @@ document.getElementById("addIncome").addEventListener("click", () => {
 });
 
 const createElementsList = element => {
-  var li = document.createElement('li');
+
+  var tr = document.createElement('tr');
 
   var cancelBtn = document.createElement('button');
-  cancelBtn.innerText = "X";
+  cancelBtn.innerText = "Delete";
   cancelBtn.value = element.id;
   cancelBtn.className = "deleteTask";
   cancelBtn.addEventListener('click', function handleClick(event) {
-    alert('Element deleted 🎉');
+    //alert('Element deleted 🎉');
     tasks = tasks.filter(value => value.id != this.value);
     localStorage.setItem("tasks", JSON.stringify(tasks));
     reset();
-    display("income");
+    display();
     document.getElementById('totalIncome').innerText = "Total Income: $" + tasks.reduce((acc, incomes) => incomes.type == "income" ? acc + incomes.amount : acc, 0);
   });
 
-  var label = document.createElement('label');
-  label.innerText = element.category;
-  var amount = document.createElement('label');
-  amount.innerHTML = element.amount;
-  var mdate = document.createElement('label');
-  mdate.innerHTML = element.date;
-  li.appendChild(label);
-  li.appendChild(amount);
-  li.appendChild(mdate);
-  li.appendChild(cancelBtn);
+  
+  var td1 = document.createElement('td');
+  td1.innerText = element.category;
+  var td2 = document.createElement('td');
+  td2.innerHTML = "$ " + element.amount;
+  var td3 = document.createElement('td');
+  td3.innerHTML = element.date;
+  var td4 = document.createElement('td');
+  tr.appendChild(td1);
+  tr.appendChild(td2);
+  tr.appendChild(td3);
+  td4.appendChild(cancelBtn);
+  tr.appendChild(td4);
 
-  document.querySelector('#list').appendChild(li);
+  document.querySelector('#list').appendChild(tr);
 }
 
-var display = type => {
-  var li = document.createElement('li');
-  var label1 = document.createElement('label');
-  label1.innerText = "Category";
-  var label2 = document.createElement('label');
-  label2.innerText = "Amount";
-  var label3 = document.createElement('label');
-  label3.innerText = "Date";
-  var label4 = document.createElement('label');
-  label4.innerText = "Delete";
-  li.appendChild(label1);
-  li.appendChild(label2);
-  li.appendChild(label3);
-  li.appendChild(label4);
-  document.querySelector('#list').appendChild(li);
-  JSON.parse(localStorage.getItem("tasks")).forEach(element => {
-
-    if (element.type == "income" && type == "income") {
-      createElementsList(element);
-    }
-  });
+var display = () => {
+  if (JSON.parse(localStorage.getItem("tasks")).length != 0){
+    var tr = document.createElement('tr');
+    var th1 = document.createElement('th');
+    th1.innerText = "Category";
+    var th2 = document.createElement('th');
+    th2.innerText = "Amount";
+    var th3 = document.createElement('th');
+    th3.innerText = "Date";
+    var th4 = document.createElement('th');
+    th4.innerText = "";
+    tr.appendChild(th1);
+    tr.appendChild(th2);
+    tr.appendChild(th3);
+    tr.appendChild(th4);
+    document.querySelector('#list').appendChild(tr);
+    
+    JSON.parse(localStorage.getItem("tasks")).forEach(element => {
+      if (element.type == "income") {
+        createElementsList(element);
+      }
+      //JSON.parse(localStorage.getItem("tasks")).length){
+    });
+  }
 }
 
 const reset = () => {

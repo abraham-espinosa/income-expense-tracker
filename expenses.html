@@ -12,18 +12,23 @@
 
 <body onload="display('expense')">
     <main>
-        <div class="nav-bar">
-            <a href="index.html"><i class="fa-solid fa-house fa-2x"></i></a>
-            <i class="fa-solid fa-circle-plus fa-2x" onclick="show()"></i>
+        <div class="nav-bar-general">
+            <a href="index.html">
+                <i class="fa-solid fa-house fa-2x"></i>
+            </a>
         </div>
         <div class="container-income-expense">
-            <div>Expenses</div>
-            <div id="totalExpenses">Total amount</div>
-            <div id="list"></div>
+            <div class="main-container">
+                <div id="totalExpenses">Total expenses</div>
+                <div onclick="show()">
+                    <button class="new-record">Add new record</button>
+                </div>
+            </div>
+            <table id="list"></table>
         </div>
         <div id="popup">
             <form id="form">
-                <button type="button" id="close" onclick="hide()">X</button>
+                <button type="button" id="close" onclick="hide()">Close</button>
                 <h1>Add Expense</h1>
                 <label for="category"><b>Category</b></label>
                 <br>

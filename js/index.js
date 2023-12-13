@@ -12,40 +12,42 @@
 
 
   var display = () => {
-      var li = document.createElement('li');
-      var label1 = document.createElement('label');
-      label1.innerText = "Category";
-      var label2 = document.createElement('label');
-      label2.innerText = "Amount";
-      var label3 = document.createElement('label');
-      label3.innerText = "Date";
-      var label4 = document.createElement('label');
-      label4.innerText = "Type";
-      li.appendChild(label1);
-      li.appendChild(label2);
-      li.appendChild(label3);
-      li.appendChild(label4);
-      document.querySelector('#list-index').appendChild(li);
+    if (JSON.parse(localStorage.getItem("tasks")).length != 0){
+      var tr = document.createElement('tr');
+      var th1 = document.createElement('th');
+      th1.innerText = "Category";
+      var th2 = document.createElement('th');
+      th2.innerText = "Amount";
+      var th3 = document.createElement('th');
+      th3.innerText = "Date";
+      var th4 = document.createElement('th');
+      th4.innerText = "Concept";
+      tr.appendChild(th1);
+      tr.appendChild(th2);
+      tr.appendChild(th3);
+      tr.appendChild(th4);
+      document.querySelector('#list-index').appendChild(tr);
       JSON.parse(localStorage.getItem("tasks")).forEach(element => {
           createElementsList(element);
       });
+    }
   }
 
   const createElementsList = element => {
-      var li = document.createElement('li');
+      var li = document.createElement('tr');
 
-      var cancelBtn = document.createElement('button');
-      cancelBtn.innerText = "X";
-      cancelBtn.value = element.id;
-      cancelBtn.className = "deleteTask";
+      //var cancelBtn = document.createElement('button');
+      //cancelBtn.innerText = "X";
+      //cancelBtn.value = element.id;
+      //cancelBtn.className = "deleteTask";
 
-      var label = document.createElement('label');
+      var label = document.createElement('td');
       label.innerText = element.category;
-      var amount = document.createElement('label');
-      amount.innerHTML = "$"+element.amount;
-      var mdate = document.createElement('label');
+      var amount = document.createElement('td');
+      amount.innerHTML = "$ " + element.amount;
+      var mdate = document.createElement('td');
       mdate.innerHTML = element.date;
-      var mtype = document.createElement('label');
+      var mtype = document.createElement('td');
       mtype.innerHTML = element.type;
       li.appendChild(label);
       li.appendChild(amount);
