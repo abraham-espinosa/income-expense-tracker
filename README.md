@@ -1,5 +1,5 @@
 # Income & Expenses Tracker
-Income & Expenses Tracker is a website application built with JavaScript that allows you to track income and expenses. 
+Created a JavaScript application that tracks users’ income and expenses. Implemented localStorage property to save records in the browser.
 
 ## Website Functionality
 #### Home Page
